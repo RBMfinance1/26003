@@ -25,85 +25,74 @@
           codeReader.reset();
         }
     
-    /* === STYLES POUR LA MODAL DE CONNEXION === */
-    /* Mise à jour forcée - page blanche avec encadré bleu */
-    .login-modal {
+    /* === STYLES POUR L'ÉCRAN DE CONNEXION === */
+    .login-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: #ffffff !important;
+      background: linear-gradient(135deg, #667eea, #764ba2);
       display: flex;
       justify-content: center;
       align-items: center;
       z-index: 9999;
     }
     
-    .login-card {
-      background: linear-gradient(135deg, #667eea, #764ba2);
+    .login-box {
+      background: white;
       padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
       text-align: center;
       max-width: 400px;
       width: 90%;
       margin: 20px;
-      border: 2px solid #5a67d8;
     }
     
-    .login-card h2 {
-      margin: 0 0 15px 0;
-      color: white;
-      font-size: 1.5em;
-      font-weight: 600;
+    .login-box h1 {
+      margin-bottom: 20px;
+      color: #667eea;
+      font-size: 2em;
     }
     
-    .login-card p {
-      color: rgba(255, 255, 255, 0.9);
+    .login-box p {
+      color: #666;
       margin-bottom: 30px;
-      font-size: 1em;
-      line-height: 1.4;
+      line-height: 1.5;
     }
     
     .login-form input[type="password"] {
       width: 100%;
       padding: 15px;
       margin: 15px 0;
-      border: 2px solid rgba(255, 255, 255, 0.3);
+      border: 2px solid #e0e0e0;
       border-radius: 10px;
       font-size: 16px;
       text-align: center;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.9);
-      color: #333;
+      transition: border-color 0.3s;
     }
     
     .login-form input[type="password"]:focus {
-      border-color: white;
+      border-color: #667eea;
       outline: none;
-      background: white;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     }
     
     .login-form button {
       width: 100%;
       padding: 15px;
-      background: white;
-      border: 2px solid white;
-      color: #667eea;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      border: none;
+      color: white;
       border-radius: 10px;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 10px;
+      transition: transform 0.2s;
     }
     
     .login-form button:hover {
-      background: rgba(255, 255, 255, 0.9);
       transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
     }
     
     .login-form button:active {
@@ -111,30 +100,10 @@
     }
     
     .login-error {
-      color: #fff;
-      background: rgba(231, 76, 60, 0.8);
-      font-size: 0.9em;
+      color: #dc3545;
+      font-weight: bold;
       margin-top: 15px;
       min-height: 20px;
-      padding: 12px;
-      border-radius: 8px;
-      border: 2px solid #e74c3c;
-    }
-    
-    /* Animation d'apparition simple */
-    .login-card {
-      animation: cardAppear 0.4s ease-out;
-    }
-    
-    @keyframes cardAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
     
     /* Animation d'entrée */
@@ -153,21 +122,15 @@
       }
     }
     
-    @keyframes cardAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
     @keyframes shake {
       0%, 100% { transform: translateX(0); }
       25% { transform: translateX(-10px); }
       75% { transform: translateX(10px); }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
         
         codeReader = new BrowserMultiFormatReader();
@@ -594,14 +557,13 @@
       }
       
       /* Login responsive */
-      .login-card {
-        padding: 30px 25px;
-        margin: 15px;
-        max-width: 350px;
+      .login-box {
+        padding: 30px 20px;
+        margin: 10px;
       }
       
-      .login-card h2 {
-        font-size: 1.3em;
+      .login-box h1 {
+        font-size: 1.5em;
       }
     }
   </style>
@@ -773,7 +735,7 @@
     // === GESTION DE L'AUTHENTIFICATION ===
     
     // ⚠️ CHANGEZ LE MOT DE PASSE ICI ⚠️
-    const MASTER_PASSWORD = "262626";
+    const MASTER_PASSWORD = "scanner2025";
     
     function checkPassword() {
       const enteredPassword = document.getElementById('passwordInput').value;
@@ -782,9 +744,12 @@
       if (enteredPassword === MASTER_PASSWORD) {
         // Mot de passe correct
         sessionStorage.setItem('authenticated', 'true');
-        document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('logoutBtn').style.display = 'inline-block';
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
         errorDiv.textContent = '';
+        
+        // Animation d'entrée de l'app
+        document.getElementById('mainApp').style.animation = 'fadeIn 0.5s ease-in';
         
       } else {
         // Mot de passe incorrect
@@ -803,12 +768,9 @@
     function logout() {
       if (confirm('🚪 Êtes-vous sûr de vouloir vous déconnecter ?')) {
         sessionStorage.removeItem('authenticated');
-        document.getElementById('loginModal').style.display = 'flex';
-        document.getElementById('logoutBtn').style.display = 'none';
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('mainApp').style.display = 'none';
         document.getElementById('passwordInput').value = '';
-        setTimeout(() => {
-          document.getElementById('passwordInput').focus();
-        }, 300);
       }
     }
     
@@ -816,11 +778,11 @@
     window.addEventListener('DOMContentLoaded', function() {
       const isAuthenticated = sessionStorage.getItem('authenticated');
       if (isAuthenticated === 'true') {
-        document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('logoutBtn').style.display = 'inline-block';
+        document.getElementById('loginScreen').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'block';
       } else {
-        document.getElementById('loginModal').style.display = 'flex';
-        document.getElementById('logoutBtn').style.display = 'none';
+        document.getElementById('loginScreen').style.display = 'flex';
+        document.getElementById('mainApp').style.display = 'none';
         // Focus automatique sur le champ mot de passe
         setTimeout(() => {
           document.getElementById('passwordInput').focus();
