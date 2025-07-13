@@ -26,14 +26,14 @@
         }
     
     /* === STYLES POUR LA MODAL DE CONNEXION === */
+    /* Mise à jour forcée - page blanche avec encadré bleu */
     .login-modal {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(5px);
+      background: #ffffff !important;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -41,67 +41,69 @@
     }
     
     .login-card {
-      background: white;
-      padding: 30px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 40px;
       border-radius: 15px;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
       text-align: center;
-      max-width: 350px;
+      max-width: 400px;
       width: 90%;
       margin: 20px;
-      border: 1px solid rgba(255,255,255,0.3);
-      animation: modalAppear 0.3s ease-out;
+      border: 2px solid #5a67d8;
     }
     
     .login-card h2 {
-      margin: 0 0 10px 0;
-      color: #333;
-      font-size: 1.3em;
+      margin: 0 0 15px 0;
+      color: white;
+      font-size: 1.5em;
       font-weight: 600;
     }
     
     .login-card p {
-      color: #666;
-      margin-bottom: 25px;
-      font-size: 0.9em;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
+      font-size: 1em;
+      line-height: 1.4;
     }
     
     .login-form input[type="password"] {
       width: 100%;
-      padding: 12px 15px;
-      margin: 10px 0;
-      border: 2px solid #e8e8e8;
-      border-radius: 8px;
-      font-size: 15px;
+      padding: 15px;
+      margin: 15px 0;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      font-size: 16px;
       text-align: center;
       transition: all 0.3s ease;
-      background: #fafafa;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
     }
     
     .login-form input[type="password"]:focus {
-      border-color: #667eea;
+      border-color: white;
       outline: none;
       background: white;
-      box-shadow: 0 0 10px rgba(102, 126, 234, 0.2);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
     }
     
     .login-form button {
       width: 100%;
-      padding: 12px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border: none;
-      color: white;
-      border-radius: 8px;
-      font-size: 14px;
+      padding: 15px;
+      background: white;
+      border: 2px solid white;
+      color: #667eea;
+      border-radius: 10px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       transition: all 0.3s ease;
-      margin-top: 5px;
+      margin-top: 10px;
     }
     
     .login-form button:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
     }
     
     .login-form button:active {
@@ -109,33 +111,30 @@
     }
     
     .login-error {
-      color: #e74c3c;
-      font-size: 0.85em;
-      margin-top: 10px;
-      min-height: 18px;
-      padding: 8px;
-      background: rgba(231, 76, 60, 0.1);
-      border-radius: 6px;
-      border-left: 3px solid #e74c3c;
+      color: #fff;
+      background: rgba(231, 76, 60, 0.8);
+      font-size: 0.9em;
+      margin-top: 15px;
+      min-height: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #e74c3c;
     }
     
-    /* Animation d'apparition de la modal */
-    @keyframes modalAppear {
+    /* Animation d'apparition simple */
+    .login-card {
+      animation: cardAppear 0.4s ease-out;
+    }
+    
+    @keyframes cardAppear {
       from {
         opacity: 0;
-        transform: scale(0.8) translateY(-30px);
+        transform: translateY(-30px);
       }
       to {
         opacity: 1;
-        transform: scale(1) translateY(0);
+        transform: translateY(0);
       }
-    }
-    
-    /* Effet de flou sur l'application en arrière-plan */
-    .app-blurred {
-      filter: blur(3px);
-      pointer-events: none;
-      user-select: none;
     }
     
     /* Animation d'entrée */
@@ -151,6 +150,17 @@
       to {
         opacity: 1;
         transform: translateY(0) scale(1);
+      }
+    }
+    
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
     
@@ -585,13 +595,13 @@
       
       /* Login responsive */
       .login-card {
-        padding: 25px 20px;
-        margin: 10px;
-        max-width: 300px;
+        padding: 30px 25px;
+        margin: 15px;
+        max-width: 350px;
       }
       
       .login-card h2 {
-        font-size: 1.2em;
+        font-size: 1.3em;
       }
     }
   </style>
@@ -773,7 +783,6 @@
         // Mot de passe correct
         sessionStorage.setItem('authenticated', 'true');
         document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('mainApp').classList.remove('app-blurred');
         document.getElementById('logoutBtn').style.display = 'inline-block';
         errorDiv.textContent = '';
         
@@ -795,7 +804,6 @@
       if (confirm('🚪 Êtes-vous sûr de vouloir vous déconnecter ?')) {
         sessionStorage.removeItem('authenticated');
         document.getElementById('loginModal').style.display = 'flex';
-        document.getElementById('mainApp').classList.add('app-blurred');
         document.getElementById('logoutBtn').style.display = 'none';
         document.getElementById('passwordInput').value = '';
         setTimeout(() => {
@@ -809,11 +817,9 @@
       const isAuthenticated = sessionStorage.getItem('authenticated');
       if (isAuthenticated === 'true') {
         document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('mainApp').classList.remove('app-blurred');
         document.getElementById('logoutBtn').style.display = 'inline-block';
       } else {
         document.getElementById('loginModal').style.display = 'flex';
-        document.getElementById('mainApp').classList.add('app-blurred');
         document.getElementById('logoutBtn').style.display = 'none';
         // Focus automatique sur le champ mot de passe
         setTimeout(() => {
