@@ -592,7 +592,7 @@
   <!-- Application principale -->
   <div id="mainApp" class="container">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-      <h1>📱 Scanner EAN Mobile Enhanced</h1>
+      <h1>📱 EAN Follow-up samples</h1>
       <button onclick="logout()" id="logoutBtn" style="background: #dc3545; padding: 8px 12px; font-size: 12px; display: none;">🚪 Déconnexion</button>
     </div>
 
@@ -739,11 +739,13 @@
 
   <script>
     // === GESTION DE L'AUTHENTIFICATION ===
+    // ========================================
+        // ⚠️ CHANGEZ LE MOT DE PASSE ICI ⚠️
+    // ========================================
+            const MASTER_PASSWORD = "262626";
+    // ========================================
     
-    // ⚠️ CHANGEZ LE MOT DE PASSE ICI ⚠️
-    const MASTER_PASSWORD = "262626";
-    
-    function checkPassword() {
+        function checkPassword() {
       const enteredPassword = document.getElementById('passwordInput').value;
       const errorDiv = document.getElementById('loginError');
       
@@ -814,6 +816,7 @@
     let selectedItems = [];
     let currentProductToAdd = null; // Produit en cours d'ajout
 
+    // ========================================
     // Zone Configurable
     // Changer les numéros des colonnes pour adapter à n'importe quel tableau
     // Liste des colonnes
@@ -824,7 +827,8 @@
     const COL_TAILLE = 4;
     const COL_MARQUE = 7;
     const COL_EAN = 10;
-
+    // ========================================
+    
     function loadCSV() {
       const file = document.getElementById('csvFile').files[0];
       if (!file) return alert("⚠️ Sélectionnez un fichier CSV.");
