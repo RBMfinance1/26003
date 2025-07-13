@@ -24,114 +24,6 @@
         if (codeReader) {
           codeReader.reset();
         }
-    
-    /* === STYLES POUR L'ÉCRAN DE CONNEXION === */
-    .login-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-    }
-    
-    .login-box {
-      background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      text-align: center;
-      max-width: 400px;
-      width: 90%;
-      margin: 20px;
-    }
-    
-    .login-box h1 {
-      margin-bottom: 20px;
-      color: #667eea;
-      font-size: 2em;
-    }
-    
-    .login-box p {
-      color: #666;
-      margin-bottom: 30px;
-      line-height: 1.5;
-    }
-    
-    .login-form input[type="password"] {
-      width: 100%;
-      padding: 15px;
-      margin: 15px 0;
-      border: 2px solid #e0e0e0;
-      border-radius: 10px;
-      font-size: 16px;
-      text-align: center;
-      transition: border-color 0.3s;
-    }
-    
-    .login-form input[type="password"]:focus {
-      border-color: #667eea;
-      outline: none;
-    }
-    
-    .login-form button {
-      width: 100%;
-      padding: 15px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border: none;
-      color: white;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s;
-    }
-    
-    .login-form button:hover {
-      transform: translateY(-2px);
-    }
-    
-    .login-form button:active {
-      transform: translateY(0);
-    }
-    
-    .login-error {
-      color: #dc3545;
-      font-weight: bold;
-      margin-top: 15px;
-      min-height: 20px;
-    }
-    
-    /* Animation d'entrée */
-    .login-box {
-      animation: loginBoxAppear 0.5s ease-out;
-    }
-    
-    @keyframes loginBoxAppear {
-      from {
-        opacity: 0;
-        transform: translateY(-50px) scale(0.9);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-    
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      25% { transform: translateX(-10px); }
-      75% { transform: translateX(10px); }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
         
         codeReader = new BrowserMultiFormatReader();
         const constraints = {
@@ -196,7 +88,7 @@
     
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #667eea, #764ba2);
+      background: white;
       margin: 0;
       padding: 10px;
       color: #2c3e50;
@@ -490,6 +382,119 @@
       font-style: italic;
     }
     
+    /* === ÉCRAN DE CONNEXION === */
+    .login-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    
+    .login-card {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      margin: 20px;
+      border: 2px solid #5a67d8;
+      animation: cardAppear 0.4s ease-out;
+    }
+    
+    .login-card h2 {
+      margin: 0 0 15px 0;
+      color: white;
+      font-size: 1.5em;
+      font-weight: 600;
+    }
+    
+    .login-card p {
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 30px;
+      font-size: 1em;
+      line-height: 1.4;
+    }
+    
+    .login-form input[type="password"] {
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      font-size: 16px;
+      text-align: center;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.9);
+      color: #333;
+    }
+    
+    .login-form input[type="password"]:focus {
+      border-color: white;
+      outline: none;
+      background: white;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
+    
+    .login-form button {
+      width: 100%;
+      padding: 15px;
+      background: white;
+      border: 2px solid white;
+      color: #667eea;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    .login-form button:hover {
+      background: rgba(255, 255, 255, 0.9);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+    }
+    
+    .login-form button:active {
+      transform: translateY(0);
+    }
+    
+    .login-error {
+      color: #fff;
+      background: rgba(231, 76, 60, 0.8);
+      font-size: 0.9em;
+      margin-top: 15px;
+      min-height: 20px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #e74c3c;
+    }
+    
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+    
     @media (max-width: 768px) {
       .container {
         padding: 15px;
@@ -557,37 +562,38 @@
       }
       
       /* Login responsive */
-      .login-box {
-        padding: 30px 20px;
-        margin: 10px;
+      .login-card {
+        padding: 30px 25px;
+        margin: 15px;
+        max-width: 350px;
       }
       
-      .login-box h1 {
-        font-size: 1.5em;
+      .login-card h2 {
+        font-size: 1.3em;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Écran de connexion -->
-  <div id="loginScreen" class="login-container">
-    <div class="login-box">
-      <h1>🔐 Accès sécurisé</h1>
-      <p>Veuillez entrer le mot de passe pour accéder au scanner EAN</p>
+  <!-- Zone de connexion -->
+  <div id="loginModal" class="login-modal">
+    <div class="login-card">
+      <h2>🔐 Authentification</h2>
+      <p>Entrez le mot de passe pour continuer</p>
       
       <div class="login-form">
         <input type="password" id="passwordInput" placeholder="Mot de passe" />
-        <button onclick="checkPassword()">🔑 Se connecter</button>
+        <button onclick="checkPassword()">🔑 Valider</button>
         <div id="loginError" class="login-error"></div>
       </div>
     </div>
-  </div> <!-- Fin de mainApp -->
+  </div>
 
-  <!-- Application principale (masquée initialement) -->
-  <div id="mainApp" class="container" style="display: none;">
+  <!-- Application principale -->
+  <div id="mainApp" class="container">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
       <h1>📱 Scanner EAN Mobile Enhanced</h1>
-      <button onclick="logout()" style="background: #dc3545; padding: 8px 12px; font-size: 12px;">🚪 Déconnexion</button>
+      <button onclick="logout()" id="logoutBtn" style="background: #dc3545; padding: 8px 12px; font-size: 12px; display: none;">🚪 Déconnexion</button>
     </div>
 
     <div class="section">
@@ -735,7 +741,7 @@
     // === GESTION DE L'AUTHENTIFICATION ===
     
     // ⚠️ CHANGEZ LE MOT DE PASSE ICI ⚠️
-    const MASTER_PASSWORD = "scanner2025";
+    const MASTER_PASSWORD = "262626";
     
     function checkPassword() {
       const enteredPassword = document.getElementById('passwordInput').value;
@@ -744,12 +750,9 @@
       if (enteredPassword === MASTER_PASSWORD) {
         // Mot de passe correct
         sessionStorage.setItem('authenticated', 'true');
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('mainApp').style.display = 'block';
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'inline-block';
         errorDiv.textContent = '';
-        
-        // Animation d'entrée de l'app
-        document.getElementById('mainApp').style.animation = 'fadeIn 0.5s ease-in';
         
       } else {
         // Mot de passe incorrect
@@ -768,9 +771,12 @@
     function logout() {
       if (confirm('🚪 Êtes-vous sûr de vouloir vous déconnecter ?')) {
         sessionStorage.removeItem('authenticated');
-        document.getElementById('loginScreen').style.display = 'flex';
-        document.getElementById('mainApp').style.display = 'none';
+        document.getElementById('loginModal').style.display = 'flex';
+        document.getElementById('logoutBtn').style.display = 'none';
         document.getElementById('passwordInput').value = '';
+        setTimeout(() => {
+          document.getElementById('passwordInput').focus();
+        }, 300);
       }
     }
     
@@ -778,11 +784,11 @@
     window.addEventListener('DOMContentLoaded', function() {
       const isAuthenticated = sessionStorage.getItem('authenticated');
       if (isAuthenticated === 'true') {
-        document.getElementById('loginScreen').style.display = 'none';
-        document.getElementById('mainApp').style.display = 'block';
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('logoutBtn').style.display = 'inline-block';
       } else {
-        document.getElementById('loginScreen').style.display = 'flex';
-        document.getElementById('mainApp').style.display = 'none';
+        document.getElementById('loginModal').style.display = 'flex';
+        document.getElementById('logoutBtn').style.display = 'none';
         // Focus automatique sur le champ mot de passe
         setTimeout(() => {
           document.getElementById('passwordInput').focus();
