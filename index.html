@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
-  <title>Scanner EAN Mobile Enhanced</title>
+  <title>EAN Follow-up samples</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
@@ -739,13 +739,11 @@
 
   <script>
     // === GESTION DE L'AUTHENTIFICATION ===
-    // ========================================
-        // ⚠️ CHANGEZ LE MOT DE PASSE ICI ⚠️
-    // ========================================
-            const MASTER_PASSWORD = "262626";
-    // ========================================
     
-        function checkPassword() {
+    // ⚠️ CHANGEZ LE MOT DE PASSE ICI ⚠️
+    const MASTER_PASSWORD = "262626";
+    
+    function checkPassword() {
       const enteredPassword = document.getElementById('passwordInput').value;
       const errorDiv = document.getElementById('loginError');
       
@@ -816,19 +814,17 @@
     let selectedItems = [];
     let currentProductToAdd = null; // Produit en cours d'ajout
 
-    // ========================================
     // Zone Configurable
     // Changer les numéros des colonnes pour adapter à n'importe quel tableau
     // Liste des colonnes
 
-    const COL_REF = 0;
+    const COL_REF = 2;
     const COL_CODE = 1;
-    const COL_COULEUR = 2;
-    const COL_TAILLE = 4;
-    const COL_MARQUE = 7;
-    const COL_EAN = 10;
-    // ========================================
-    
+    const COL_COULEUR = 5;
+    const COL_TAILLE = 6;
+    const COL_MARQUE = 11;
+    const COL_EAN = 7;
+
     function loadCSV() {
       const file = document.getElementById('csvFile').files[0];
       if (!file) return alert("⚠️ Sélectionnez un fichier CSV.");
